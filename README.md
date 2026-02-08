@@ -49,7 +49,7 @@ Each problem includes:
 
 ## 📅 Daily Progress Log
 
-I regularly commit my progress to maintain consistency.
+I regularly commit my progress to maintain consistency.I also commit the problem of the day that comes on leetcode.
 
 > “Small steps daily beat occasional big efforts.”
 
