@@ -1,0 +1,88 @@
+# 45. Jump Game II
+
+## 🔗 Problem
+
+LeetCode: Jump Game II
+
+You are given an array `nums` where each element represents the **maximum jump length** from that position.
+
+Return the **minimum number of jumps** required to reach the last index.
+
+---
+
+## 🧠 Intuition
+
+At every index, you don’t need to decide *where* to jump next —
+you just need to know **how far you can reach** using the current jump.
+
+Think of it like:
+
+* Each jump gives you a **range**
+* Within that range, you choose the position that extends the next range the farthest
+
+This is a **level-based greedy approach**, similar to BFS.
+
+---
+
+## ⚙️ Approach (Greedy Range Expansion)
+
+Variables:
+
+* `currentEnd` → end of current jump range
+* `farthest` → farthest index reachable so far
+* `jumps` → number of jumps used
+
+Steps:
+
+1. Traverse array
+2. Update `farthest = max(farthest, i + nums[i])`
+3. When you reach `currentEnd`:
+
+   * You must take a jump
+   * Update `currentEnd = farthest`
+
+Stop before last index (no jump needed from last).
+
+---
+
+## ⏱️ Complexity
+
+| Type  | Complexity |
+| ----- | ---------- |
+| Time  | O(n)       |
+| Space | O(1)       |
+
+---
+
+## 💻 Java Solution
+
+```java
+class Solution {
+    public int jump(int[] nums) {
+        int jumps = 0;
+        int currentEnd = 0;
+        int farthest = 0;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+
+            farthest = Math.max(farthest, i + nums[i]);
+
+            if (i == currentEnd) {
+                jumps++;
+                currentEnd = farthest;
+            }
+        }
+
+        return jumps;
+    }
+}
+```
+
+---
+
+## 🧩 Pattern Learned
+
+* Greedy range expansion
+* BFS-like level traversal
+* Min steps to reach end
+* Avoid unnecessary state tracking
